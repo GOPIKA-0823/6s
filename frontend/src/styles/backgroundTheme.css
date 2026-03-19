@@ -1,0 +1,145 @@
+/**
+ * South Indian Food Theme - Background Images
+ * 
+ * This file contains CSS for South Indian food-themed background images
+ * for different dashboard pages
+ */
+
+/* Banana Leaf (Food Serving) - For main dashboards */
+.bg-banana-leaf {
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.85) 0%, rgba(255, 193, 7, 0.7) 100%),
+              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="leaf" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse"><path d="M100,20 Q120,50 110,100 Q120,150 100,180 Q90,150 80,100 Q70,50 100,20" fill="%23FFF8E7" opacity="0.1"/></pattern></defs><rect width="1200" height="600" fill="url(%23leaf)"/></svg>');
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Idli & Dosa Plate - For Products page */
+.bg-idli-dosa {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.8) 0%, rgba(255, 107, 53, 0.7) 100%),
+              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="200" cy="150" r="60" fill="%23FFF8E7" opacity="0.05"/><circle cx="600" cy="300" r="80" fill="%23FFF8E7" opacity="0.08"/><circle cx="1000" cy="450" r="70" fill="%23FFF8E7" opacity="0.06"/></svg>');
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Spices & Colors - For Requests page */
+.bg-spices {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.85) 0%, rgba(46, 125, 50, 0.75) 100%),
+              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><line x1="0" y1="0" x2="1200" y2="600" stroke="%23FFF8E7" stroke-width="2" opacity="0.05"/><line x1="0" y1="600" x2="1200" y2="0" stroke="%23FFF8E7" stroke-width="2" opacity="0.05"/></svg>');
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Filter Coffee - For Orders page */
+.bg-filter-coffee {
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.9) 0%, rgba(62, 39, 35, 0.8) 100%),
+              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect x="100" y="150" width="300" height="400" rx="50" fill="%23FFF8E7" opacity="0.03"/><rect x="800" y="100" width="250" height="450" rx="40" fill="%23FFF8E7" opacity="0.04"/></svg>');
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Bills & Invoice - Gold Theme */
+.bg-invoices {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.85) 0%, rgba(255, 107, 53, 0.75) 100%),
+              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect x="200" y="100" width="800" height="400" fill="%23FFF8E7" opacity="0.03"/><line x1="0" y1="300" x2="1200" y2="300" stroke="%23FFF8E7" stroke-width="1" opacity="0.05"/></svg>');
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Admin Panel - Professional Purple */
+.bg-admin-panel {
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.9) 0%, rgba(63, 81, 181, 0.85) 100%),
+              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="250" cy="200" r="50" fill="%23FFF8E7" opacity="0.02"/><circle cx="950" cy="400" r="70" fill="%23FFF8E7" opacity="0.03"/><path d="M0,300 Q300,250 600,300 T1200,300" stroke="%23FFF8E7" stroke-width="1" fill="none" opacity="0.03"/></svg>');
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Marketplace - Vibrant Colors */
+.bg-marketplace {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.8) 0%, rgba(46, 125, 50, 0.8) 50%, rgba(255, 193, 7, 0.7) 100%),
+              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><polygon points="100,100 200,50 300,100 250,200 300,300 200,250 100,300 150,200" fill="%23FFF8E7" opacity="0.04"/><polygon points="1000,400 1100,350 1200,400 1150,500 1200,600 1100,550 1000,600 1050,500" fill="%23FFF8E7" opacity="0.05"/></svg>');
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Crispy texture overlay for all food pages */
+.food-theme-overlay {
+  position: relative;
+}
+
+.food-theme-overlay::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 35px,
+      rgba(255, 255, 255, 0.01) 35px,
+      rgba(255, 255, 255, 0.01) 70px
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Page background utilities */
+.page-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Text contrast for readable overlays */
+.bg-text-overlay {
+  background-color: rgba(255, 248, 231, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* South Indian spice gradient cards */
+.spice-card {
+  background: linear-gradient(135deg, rgba(255, 248, 231, 1) 0%, rgba(255, 248, 231, 0.98) 100%);
+  border-left: 4px solid #2e7d32;
+  box-shadow: 0 4px 6px rgba(46, 125, 50, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Success badge with spice theme */
+.badge-success-spice {
+  background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+  box-shadow: 0 2px 4px rgba(46, 125, 50, 0.3);
+}
+
+/* Hover effects for food cards */
+.food-card-hover {
+  transition: all 0.3s ease;
+}
+
+.food-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(46, 125, 50, 0.2);
+}
+
+/* Banana leaf pattern border */
+.leaf-border {
+  border-image: linear-gradient(45deg, #2e7d32, #ffc107, #ff6b35) 1;
+}
+
+/* Golden South Indian text */
+.text-spice-gold {
+  color: #ffc107;
+  text-shadow: 1px 1px 2px rgba(46, 125, 50, 0.3);
+}
+
+/* Cream background for content */
+.content-cream-bg {
+  background-color: #fff8e7;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(46, 125, 50, 0.03) 2px,
+      rgba(46, 125, 50, 0.03) 4px
+    );
+}

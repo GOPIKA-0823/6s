@@ -1,0 +1,76 @@
+/* Agaram Agencies - South Indian Food Theme */
+
+:root {
+  /* South Indian Colors */
+  --color-banana-leaf: #2e7d32;
+  --color-turmeric-yellow: #ffc107;
+  --color-spice-orange: #ff6b35;
+  --color-cream-bg: #fff8e7;
+}
+
+body {
+  background-color: var(--color-cream-bg);
+}
+
+#root {
+  min-height: 100vh;
+  background-color: var(--color-cream-bg);
+}
+
+/* Smooth transitions for theme */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Card styling for South Indian theme */
+.card {
+  background-color: white;
+  border-left: 4px solid var(--color-banana-leaf);
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.1);
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: var(--color-banana-leaf);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #1b511e;
+}
+
+.btn-accent {
+  background-color: var(--color-spice-orange);
+  color: white;
+}
+
+.btn-accent:hover {
+  background-color: #e64a19;
+}
+
+.btn-secondary {
+  background-color: var(--color-turmeric-yellow);
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #ffb300;
+}
+
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
