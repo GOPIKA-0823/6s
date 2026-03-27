@@ -25,7 +25,9 @@ const ManufacturerRequests = () => {
       setLoading(true);
       setError(null);
       const response = await getProductRequests();
-      setRequests(response.data);
+      // Safety guard: never show requests from manufacturers (filter by userType)
+      const validRequests = (response.data || []).filter(r => r.retailerId?.userType !== 'manufacturer');
+      setRequests(validRequests);
     } catch (error) {
       console.error('Error fetching requests:', error);
       setError('Failed to load product requests. Please try again.');

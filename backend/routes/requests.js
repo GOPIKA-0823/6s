@@ -29,10 +29,13 @@ router.get('/product-requests', authMiddleware, async (req, res) => {
     // Get requests where this user is the manufacturer
     const requests = await Request.find({ manufacturerId: req.userId })
       .populate('productId', 'name price stock')
-      .populate('retailerId', 'companyName email phone address isVerified')
+      .populate('retailerId', 'companyName email phone address isVerified userType')
       .sort({ createdAt: -1 });
 
-    res.json(requests);
+    // Filter out any requests where the requester is actually a manufacturer (not a retailer)
+    const validRequests = requests.filter(r => r.retailerId?.userType !== 'manufacturer');
+
+    res.json(validRequests);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

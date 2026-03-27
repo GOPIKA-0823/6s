@@ -17,6 +17,14 @@ const RetailerOrders = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Review Modal State
+  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [reviewOrder, setReviewOrder] = useState(null);
+  const [reviewRating, setReviewRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [reviewText, setReviewText] = useState('');
+  const [reviewedOrders, setReviewedOrders] = useState({}); // { orderId: rating }
+
   useEffect(() => {
     // Fetch orders from API on component mount
     const fetchOrders = async () => {
@@ -51,6 +59,33 @@ const RetailerOrders = () => {
 
     fetchOrders();
   }, []);
+
+  const handleOpenReview = (order) => {
+    setReviewOrder(order);
+    setReviewRating(reviewedOrders[order._id] || 0);
+    setReviewText('');
+    setShowReviewModal(true);
+  };
+
+  const handleSubmitReview = () => {
+    if (reviewRating === 0) {
+      alert("Please select a star rating first.");
+      return;
+    }
+    
+    // In a real app, this would be an API call
+    setReviewedOrders(prev => ({
+      ...prev,
+      [reviewOrder._id]: reviewRating
+    }));
+    
+    setShowReviewModal(false);
+    
+    // Show a success message
+    setTimeout(() => {
+      alert("Review submitted successfully! Thank you for your feedback.");
+    }, 100);
+  };
 
   if (loading) {
     return (
@@ -192,9 +227,18 @@ const RetailerOrders = () => {
                         <div className="w-10 h-10 bg-yellow-50 rounded-full flex items-center justify-center text-xl shadow-inner">🏆</div>
                         <div className="flex-grow">
                           <div className="flex gap-1">
-                            {[1, 2, 3, 4, 5].map(star => (
-                              <span key={star} className="text-xl text-gray-200 cursor-pointer hover:text-yellow-400 transition-colors">☆</span>
-                            ))}
+                            {[1, 2, 3, 4, 5].map(star => {
+                              const isFilled = reviewedOrders[order._id] ? star <= reviewedOrders[order._id] : false;
+                              return (
+                                <span 
+                                  key={star} 
+                                  onClick={() => handleOpenReview(order)}
+                                  className={`text-xl cursor-pointer transition-colors ${isFilled ? 'text-yellow-400' : 'text-gray-200 hover:text-yellow-400'}`}
+                                >
+                                  {isFilled ? '★' : '☆'}
+                                </span>
+                              );
+                            })}
                           </div>
                           <p className="text-xs mt-1 text-gray-600 font-medium">Rate & Review</p>
                         </div>
@@ -277,6 +321,64 @@ const RetailerOrders = () => {
               )}
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Review Modal */}
+      {showReviewModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center animate-fade-in p-4">
+          <div className="bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl relative">
+            <button 
+              onClick={() => setShowReviewModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              ✕
+            </button>
+            
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-yellow-50 rounded-full flex items-center justify-center text-3xl mx-auto mb-3 shadow-inner">
+                🏆
+              </div>
+              <h2 className="text-xl font-bold text-gray-900">Rate & Review</h2>
+              <p className="text-sm text-gray-500 mt-1">
+                How was your experience with <br/><span className="font-bold text-gray-700">{reviewOrder?.items?.[0]?.name || reviewOrder?.items?.[0]?.productName}</span>?
+              </p>
+            </div>
+
+            {/* Editable Stars */}
+            <div className="flex justify-center gap-2 mb-6">
+              {[1, 2, 3, 4, 5].map(star => {
+                const isActive = star <= (hoverRating || reviewRating);
+                return (
+                  <button
+                    key={star}
+                    type="button"
+                    onMouseEnter={() => setHoverRating(star)}
+                    onMouseLeave={() => setHoverRating(0)}
+                    onClick={() => setReviewRating(star)}
+                    className={`text-4xl transition-all ${isActive ? 'text-yellow-400 scale-110' : 'text-gray-200 hover:scale-110'}`}
+                  >
+                    ★
+                  </button>
+                );
+              })}
+            </div>
+
+            <textarea
+              placeholder="Tell us what you loved (optional)"
+              value={reviewText}
+              onChange={(e) => setReviewText(e.target.value)}
+              className="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:bg-white transition-all resize-none min-h-[100px]"
+            ></textarea>
+
+            <button 
+              onClick={handleSubmitReview}
+              disabled={reviewRating === 0}
+              className={`w-full mt-4 py-3 rounded-xl font-bold text-white transition-all shadow-md ${reviewRating === 0 ? 'bg-gray-300 cursor-not-allowed' : 'bg-primary-600 hover:bg-primary-700 active:scale-95'}`}
+            >
+              Submit Review
+            </button>
+          </div>
         </div>
       )}
     </div>

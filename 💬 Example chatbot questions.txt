@@ -1,0 +1,26 @@
+💬 Example retailer chatbot questions
+Show coffee powder
+Available snacks
+Who sells dosa batter?
+Best manufacturer for chocolate
+Verified sellers for beverages
+My pending requests
+Show accepted requests
+Track my order
+Suggest products for my shop
+Popular items this week
+What should I reorder?
+
+💬 Example manufacturer chatbot questions
+Show my products
+Which products are low in stock?
+Add new product
+Update coffee powder stock
+Show pending retailer requests
+Accepted requests today
+Which request needs approval?
+Track current orders
+Orders placed this week
+Cancelled orders
+Most requested product
+Top retailer

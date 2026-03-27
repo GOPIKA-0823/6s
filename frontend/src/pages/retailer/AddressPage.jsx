@@ -431,15 +431,19 @@ const AddressPage = () => {
            newStatus: 'returned',
            notes: `Return Requested. Reason: ${reason}${comments} | Pickup via: ${fullAddressString}`
          };
-         console.log('--- RETURN DEBUG ---');
+         // Bypass backend connection as requested by user
+         console.log('--- RETURN DEBUG (MOCK UI) ---');
          console.log('Order ID:', order._id);
-         console.log('Payload:', payload);
          console.log('--------------------');
-         await updateOrderStatus(order._id, payload);
+         
+         // await updateOrderStatus(order._id, payload);
+         
+         // Navigate to success screen immediately
          navigate('/retailer/return-success', { state: { order } });
        } catch (err) {
          console.error('Error handling return:', err);
-         alert('Failed to initiate return. Please try again.');
+         const msg = err.response?.data?.message || 'Failed to initiate return. Please try again.';
+         alert(msg);
          setLoading(false);
        }
     } else {

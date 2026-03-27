@@ -198,9 +198,9 @@ router.put('/:id/status', authMiddleware, async (req, res) => {
             message: 'Order cannot be cancelled after it has been shipped.' 
           });
         }
-        if (newStatus === 'returned' && order.status !== 'delivered') {
+        if (newStatus === 'returned' && !['delivered', 'shipped'].includes(order.status)) {
           return res.status(400).json({ 
-            message: 'Order can only be returned after it has been delivered.' 
+            message: 'Order can only be returned after it has been shipped or delivered.' 
           });
         }
       } else {

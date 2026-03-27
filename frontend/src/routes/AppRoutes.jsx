@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import DashboardLayout from '../layouts/DashboardLayout';
 import AdminLayout from '../layouts/AdminLayout';
@@ -44,8 +44,7 @@ import AdminMessages from '../pages/admin/AdminMessages';
 
 const AppRoutes = () => {
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
         {/* Main Layout Routes */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<LandingPage />} />
@@ -96,7 +95,6 @@ const AppRoutes = () => {
           <Route path="return-success" element={<ReturnSuccessPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
   );
 };
 
